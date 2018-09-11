@@ -6,6 +6,7 @@ target 'Yelp' do
   use_frameworks!
 
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'AlamofireImage', '~> 3.3'
 
   # Pods for Yelp
 

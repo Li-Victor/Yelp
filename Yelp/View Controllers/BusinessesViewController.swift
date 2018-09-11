@@ -9,8 +9,9 @@
 import UIKit
 import SwiftyJSON
 
-class BusinessesViewController: UIViewController {
+class BusinessesViewController: UIViewController, UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
     var businesses: [Business] = []
     
     func parseToBusiness(json: JSON) -> Business {
@@ -71,6 +72,8 @@ class BusinessesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.dataSource = self
+        
         let yelpAPIKey = APIKeys.YELP.rawValue
         let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=Thai&latitude=37.785771&longitude=-122.406165")!
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
@@ -84,11 +87,23 @@ class BusinessesViewController: UIViewController {
             } else if let data = data {
                 
                 self.businesses = JSON(data)["businesses"].arrayValue.map { self.parseToBusiness(json: $0) }
+                self.tableView.reloadData()
             }
             
         }
         task.resume()
-
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return businesses.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell") as! BusinessCell
+        
+        cell.business = businesses[indexPath.row]
+        
+        return cell
     }
 
     override func didReceiveMemoryWarning() {
