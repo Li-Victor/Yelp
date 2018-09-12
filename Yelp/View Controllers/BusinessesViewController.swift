@@ -23,6 +23,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     var isMoreDataLoading = false
+    var loadingMorePostsActivityView: InfiniteScrollActivityView?
     
     func parseToBusiness(json: JSON) -> Business {
         let name = json["name"].stringValue
@@ -88,6 +89,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         let task = session.dataTask(with: request) {
             (data, response, error) in
             self.isMoreDataLoading = false
+            // Stop the loading indicator
+            self.loadingMorePostsActivityView!.stopAnimating()
+            
             // This will run when the network request returns
             if let error = error {
                 print(error.localizedDescription)
@@ -113,6 +117,16 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         self.tableView.estimatedRowHeight = 120
         searchBar.delegate = self
         
+        // Set up Infinite Scroll loading indicator
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+        loadingMorePostsActivityView = InfiniteScrollActivityView(frame: frame)
+        loadingMorePostsActivityView!.isHidden = true
+        tableView.addSubview(loadingMorePostsActivityView!)
+        
+        var insets = tableView.contentInset
+        insets.bottom += InfiniteScrollActivityView.defaultHeight
+        tableView.contentInset = insets
+        
         fetchBusinesses(for: "")
     }
     
@@ -124,6 +138,12 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             // When the user has scrolled past the threshold, start requesting
             if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
                 isMoreDataLoading = true
+                
+                // Update position of loadingMoreView, and start loading indicator
+                let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+                loadingMorePostsActivityView?.frame = frame
+                loadingMorePostsActivityView!.startAnimating()
+                
                 fetchBusinesses(for: searchBar.text!, offset: businesses.count)
             }
         }
