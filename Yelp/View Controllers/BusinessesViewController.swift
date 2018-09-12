@@ -80,7 +80,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return Business(name: name, address: address, imageURL: imageURL, categories: categories, distance: distance, ratingImage: ratingImage, reviewCount: reviewCount)
     }
     
-    func fetchBusinesses(for term: String, offset: Int = 0) {
+    func fetchBusinesses(for term: String = "", offset: Int = 0) {
         let yelpAPIKey = APIKeys.YELP.rawValue
         let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=\(term)&latitude=37.785771&longitude=-122.406165&offset=\(offset)")!
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
@@ -109,6 +109,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         // creating search bar
         searchBar = UISearchBar()
         searchBar.sizeToFit()
+        searchBar.placeholder = "Restaurants"
         navItem.titleView = searchBar
         
         self.tableView.dataSource = self
@@ -127,7 +128,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         tableView.contentInset = insets
         
-        fetchBusinesses(for: "")
+        fetchBusinesses()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -168,6 +169,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        self.businesses = []
+        fetchBusinesses()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
