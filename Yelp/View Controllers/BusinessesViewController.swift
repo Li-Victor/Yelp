@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,6 +21,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
             tableView.reloadData()
         }
     }
+    
+    var isMoreDataLoading = false
     
     func parseToBusiness(json: JSON) -> Business {
         let name = json["name"].stringValue
@@ -77,19 +79,20 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
         return Business(name: name, address: address, imageURL: imageURL, categories: categories, distance: distance, ratingImage: ratingImage, reviewCount: reviewCount)
     }
     
-    func fetchBusinesses(for term: String) {
+    func fetchBusinesses(for term: String, offset: Int = 0) {
         let yelpAPIKey = APIKeys.YELP.rawValue
-        let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=\(term)&latitude=37.785771&longitude=-122.406165")!
+        let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=\(term)&latitude=37.785771&longitude=-122.406165&offset=\(offset)")!
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         request.setValue("Bearer \(yelpAPIKey)", forHTTPHeaderField: "Authorization")
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) {
             (data, response, error) in
+            self.isMoreDataLoading = false
             // This will run when the network request returns
             if let error = error {
                 print(error.localizedDescription)
             } else if let data = data {
-                self.businesses = JSON(data)["businesses"].arrayValue.map { self.parseToBusiness(json: $0) }
+                self.businesses += JSON(data)["businesses"].arrayValue.map { self.parseToBusiness(json: $0) }
             }
             
         }
@@ -105,11 +108,25 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
         navItem.titleView = searchBar
         
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 120
         searchBar.delegate = self
         
         fetchBusinesses(for: "")
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !isMoreDataLoading {
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                isMoreDataLoading = true
+                fetchBusinesses(for: searchBar.text!, offset: businesses.count)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -135,8 +152,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text, text.count > 0 {
-            fetchBusinesses(for: text)
+            self.businesses = []
             searchBar.resignFirstResponder()
+            fetchBusinesses(for: text)
         }
     }
 
