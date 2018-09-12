@@ -67,8 +67,8 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai, Seafood, Salad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbb-Z6-AtH">
-                                                    <rect key="frame" x="81" y="71" width="125" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai, Seafood, Salad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbb-Z6-AtH">
+                                                    <rect key="frame" x="81" y="71" width="124.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -81,6 +81,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qbb-Z6-AtH" secondAttribute="trailing" constant="5" id="0GW-dN-tCg"/>
                                                 <constraint firstItem="B4c-Av-pYt" firstAttribute="top" secondItem="Ikd-qj-kiA" secondAttribute="bottom" constant="5" id="5ae-82-gkC"/>
                                                 <constraint firstItem="oai-7f-tgh" firstAttribute="leading" secondItem="wBo-a7-gsG" secondAttribute="trailing" constant="5" id="6iM-b5-ycb"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ikd-qj-kiA" secondAttribute="trailing" constant="8" id="CA3-c0-ESb"/>
