@@ -127,6 +127,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Yelp" id="Bu7-wn-u2n"/>
                     <connections>
+                        <outlet property="navItem" destination="Bu7-wn-u2n" id="wk4-rH-C3f"/>
+                        <outlet property="navigationItem" destination="Bu7-wn-u2n" id="qqk-IM-XxS"/>
                         <outlet property="tableView" destination="BFe-BW-evc" id="YyY-ZE-grE"/>
                     </connections>
                 </viewController>

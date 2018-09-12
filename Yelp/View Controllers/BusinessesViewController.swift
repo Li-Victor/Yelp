@@ -9,10 +9,18 @@
 import UIKit
 import SwiftyJSON
 
-class BusinessesViewController: UIViewController, UITableViewDataSource {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    var businesses: [Business] = []
+    
+    @IBOutlet weak var navItem: UINavigationItem!
+    var searchBar: UISearchBar!
+    
+    var businesses: [Business] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     func parseToBusiness(json: JSON) -> Business {
         let name = json["name"].stringValue
@@ -68,16 +76,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource {
         let reviewCount = json["review_count"].intValue
         return Business(name: name, address: address, imageURL: imageURL, categories: categories, distance: distance, ratingImage: ratingImage, reviewCount: reviewCount)
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.tableView.dataSource = self
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 120
-        
+    
+    func fetchBusinesses(for term: String) {
         let yelpAPIKey = APIKeys.YELP.rawValue
-        let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=Thai&latitude=37.785771&longitude=-122.406165")!
+        let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=\(term)&latitude=37.785771&longitude=-122.406165")!
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         request.setValue("Bearer \(yelpAPIKey)", forHTTPHeaderField: "Authorization")
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -87,13 +89,27 @@ class BusinessesViewController: UIViewController, UITableViewDataSource {
             if let error = error {
                 print(error.localizedDescription)
             } else if let data = data {
-                
                 self.businesses = JSON(data)["businesses"].arrayValue.map { self.parseToBusiness(json: $0) }
-                self.tableView.reloadData()
             }
             
         }
         task.resume()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // creating search bar
+        searchBar = UISearchBar()
+        searchBar.sizeToFit()
+        navItem.titleView = searchBar
+        
+        self.tableView.dataSource = self
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 120
+        searchBar.delegate = self
+        
+        fetchBusinesses(for: "")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -104,8 +120,24 @@ class BusinessesViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell") as! BusinessCell
         
         cell.business = businesses[indexPath.row]
-        
         return cell
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text, text.count > 0 {
+            fetchBusinesses(for: text)
+            searchBar.resignFirstResponder()
+        }
     }
 
     override func didReceiveMemoryWarning() {
