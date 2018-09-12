@@ -8,8 +8,9 @@
 
 import UIKit
 import SwiftyJSON
+import CoreLocation
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,6 +22,11 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
             tableView.reloadData()
         }
     }
+    
+    let locationManager = CLLocationManager()
+    var latitude: CLLocationDegrees!
+    var longitude: CLLocationDegrees!
+    var first = true
     
     func parseToBusiness(json: JSON) -> Business {
         let name = json["name"].stringValue
@@ -77,9 +83,57 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
         return Business(name: name, address: address, imageURL: imageURL, categories: categories, distance: distance, ratingImage: ratingImage, reviewCount: reviewCount)
     }
     
+    func enableLocationServices() {
+        
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            // Request when-in-use authorization initially
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+            break
+            
+        case .restricted, .denied:
+            // Disable location features
+            print("disableMyLocationBasedFeatures")
+            break
+            
+        case .authorizedWhenInUse, .authorizedAlways:
+            // Enable location features
+            print("enableMyWhenInUseFeatures")
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .restricted, .denied:
+            locationManager.stopUpdatingLocation()
+            print("disableMyLocationBasedFeatures")
+            
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.startUpdatingLocation()
+            
+        case .notDetermined:
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // global locationManager? let coords = locationManager.location!.coordinate
+        // using function parameters? let coords = manager.location!.coordinate
+        let coords = locations.last!.coordinate
+        latitude = coords.latitude
+        longitude = coords.longitude
+        print("latitude: \(latitude), longitude: \(longitude)")
+        if first {
+            fetchBusinesses(for: "")
+            first = false
+        }
+    }
+
     func fetchBusinesses(for term: String) {
         let yelpAPIKey = APIKeys.YELP.rawValue
-        let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=\(term)&latitude=37.785771&longitude=-122.406165")!
+        let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=\(term)&latitude=\(latitude!)&longitude=\(longitude!)")!
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         request.setValue("Bearer \(yelpAPIKey)", forHTTPHeaderField: "Authorization")
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -99,6 +153,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
+        
         // creating search bar
         searchBar = UISearchBar()
         searchBar.sizeToFit()
@@ -109,7 +165,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
         self.tableView.estimatedRowHeight = 120
         searchBar.delegate = self
         
-        fetchBusinesses(for: "")
+        enableLocationServices()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
