@@ -8,8 +8,9 @@
 
 import UIKit
 import SwiftyJSON
+import CoreLocation
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,6 +25,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     var isMoreDataLoading = false
     var loadingMorePostsActivityView: InfiniteScrollActivityView?
+    let locationManager = CLLocationManager()
+    var latitude: CLLocationDegrees!
+    var longitude: CLLocationDegrees!
+    var first = true
     
     func parseToBusiness(json: JSON) -> Business {
         let name = json["name"].stringValue
@@ -80,9 +85,14 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return Business(name: name, address: address, imageURL: imageURL, categories: categories, distance: distance, ratingImage: ratingImage, reviewCount: reviewCount)
     }
     
+
     func fetchBusinesses(for term: String = "", offset: Int = 0) {
+        guard let latitude = latitude, let longitude = longitude else {
+            return
+        }
+        
         let yelpAPIKey = APIKeys.YELP.rawValue
-        let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=\(term)&latitude=37.785771&longitude=-122.406165&offset=\(offset)")!
+        let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=\(term)&latitude=\(latitude)&longitude=\(longitude)&offset=\(offset)")!
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         request.setValue("Bearer \(yelpAPIKey)", forHTTPHeaderField: "Authorization")
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -103,8 +113,58 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         task.resume()
     }
 
+    func enableLocationServices() {
+        
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            // Request when-in-use authorization initially
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+            break
+            
+        case .restricted, .denied:
+            // Disable location features
+            print("disableMyLocationBasedFeatures")
+            break
+            
+        case .authorizedWhenInUse, .authorizedAlways:
+            // Enable location features
+            print("enableMyWhenInUseFeatures")
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .restricted, .denied:
+            locationManager.stopUpdatingLocation()
+            print("disableMyLocationBasedFeatures")
+            
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.startUpdatingLocation()
+            
+        case .notDetermined:
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // global locationManager? let coords = locationManager.location!.coordinate
+        // using function parameters? let coords = manager.location!.coordinate
+        let coords = locations.last!.coordinate
+        latitude = coords.latitude
+        longitude = coords.longitude
+        print("latitude: \(latitude), longitude: \(longitude)")
+        if first {
+            fetchBusinesses(for: "")
+            first = false
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
         
         // creating search bar
         searchBar = UISearchBar()
@@ -128,6 +188,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         tableView.contentInset = insets
         
+        enableLocationServices()
         fetchBusinesses()
     }
     
