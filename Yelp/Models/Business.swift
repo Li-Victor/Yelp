@@ -21,6 +21,9 @@ struct Business {
     let reviewCount: Int
     let latitude: CLLocationDegrees
     let longitude: CLLocationDegrees
+    let phoneNumber: String
+    let yelpID: String
+    let price: String
     
     static func parseToBusiness(json: JSON) -> Business {
         let name = json["name"].stringValue
@@ -75,8 +78,11 @@ struct Business {
         
         let latitude = json["coordinates", "latitude"].doubleValue
         let longitude = json["coordinates", "longitude"].doubleValue
+        let phoneNumber = json["display_phone"].stringValue
+        let yelpID = json["id"].stringValue
         
         let reviewCount = json["review_count"].intValue
-        return Business(name: name, address: address, imageURL: imageURL, categories: categories, distance: distance, ratingImage: ratingImage, reviewCount: reviewCount, latitude: latitude, longitude: longitude)
+        let price = json["price"].stringValue
+        return Business(name: name, address: address, imageURL: imageURL, categories: categories, distance: distance, ratingImage: ratingImage, reviewCount: reviewCount, latitude: latitude, longitude: longitude, phoneNumber: phoneNumber, yelpID: yelpID, price: price)
     }
 }
