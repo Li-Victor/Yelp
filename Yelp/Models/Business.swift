@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SwiftyJSON
+import MapKit
 
 struct Business {
     let name: String
@@ -18,6 +19,8 @@ struct Business {
     let distance: String
     let ratingImage: UIImage
     let reviewCount: Int
+    let latitude: CLLocationDegrees
+    let longitude: CLLocationDegrees
     
     static func parseToBusiness(json: JSON) -> Business {
         let name = json["name"].stringValue
@@ -70,7 +73,10 @@ struct Business {
             ratingImage = UIImage(named: "stars_0")!
         }
         
+        let latitude = json["coordinates", "latitude"].doubleValue
+        let longitude = json["coordinates", "longitude"].doubleValue
+        
         let reviewCount = json["review_count"].intValue
-        return Business(name: name, address: address, imageURL: imageURL, categories: categories, distance: distance, ratingImage: ratingImage, reviewCount: reviewCount)
+        return Business(name: name, address: address, imageURL: imageURL, categories: categories, distance: distance, ratingImage: ratingImage, reviewCount: reviewCount, latitude: latitude, longitude: longitude)
     }
 }

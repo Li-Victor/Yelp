@@ -22,6 +22,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     var businesses: [Business] = [] {
         didSet {
             tableView.reloadData()
+            updateMap()
         }
     }
     
@@ -33,6 +34,23 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     var first = true
     
 
+    func updateMap() {
+        
+        // recenters to user location
+        let span = MKCoordinateSpanMake(0.01, 0.01)
+        let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span)
+        mapView.setRegion(region, animated: false)
+        
+        // map annotations
+        mapView.removeAnnotations(mapView.annotations)
+        for business in businesses {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: business.latitude, longitude: business.longitude)
+            annotation.title = business.name
+            mapView.addAnnotation(annotation)
+        }
+    }
+    
     func fetchBusinesses(for term: String = "", offset: Int = 0) {
         guard let latitude = latitude, let longitude = longitude else {
             return
@@ -102,12 +120,13 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         latitude = coords.latitude
         longitude = coords.longitude
         print("latitude: \(latitude), longitude: \(longitude)")
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegionMake(coords, span)
-        mapView.setRegion(region, animated: false)
+        
         if first {
-            fetchBusinesses(for: "")
             first = false
+            fetchBusinesses(for: "")
+            let span = MKCoordinateSpanMake(0.01, 0.01)
+            let region = MKCoordinateRegionMake(coords, span)
+            mapView.setRegion(region, animated: false)
         }
     }
 
