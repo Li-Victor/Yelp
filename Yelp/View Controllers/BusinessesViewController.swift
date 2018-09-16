@@ -9,9 +9,11 @@
 import UIKit
 import SwiftyJSON
 import CoreLocation
+import MapKit
 
 class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var navItem: UINavigationItem!
@@ -100,6 +102,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         latitude = coords.latitude
         longitude = coords.longitude
         print("latitude: \(latitude), longitude: \(longitude)")
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegionMake(coords, span)
+        mapView.setRegion(region, animated: false)
         if first {
             fetchBusinesses(for: "")
             first = false
