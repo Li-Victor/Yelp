@@ -166,19 +166,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QaN-Dd-D4q">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QaN-Dd-D4q">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="bJL-wG-bcL"/>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUT-u9-xNE">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUT-u9-xNE">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JUT-u9-xNE" firstAttribute="trailing" secondItem="gfw-Fe-YMe" secondAttribute="trailing" id="4Q6-8n-rz3"/>
+                            <constraint firstItem="JUT-u9-xNE" firstAttribute="bottom" secondItem="gfw-Fe-YMe" secondAttribute="bottom" id="73S-up-wXo"/>
+                            <constraint firstItem="JUT-u9-xNE" firstAttribute="leading" secondItem="gfw-Fe-YMe" secondAttribute="leading" id="Ax6-Rn-edq"/>
+                            <constraint firstItem="QaN-Dd-D4q" firstAttribute="trailing" secondItem="gfw-Fe-YMe" secondAttribute="trailing" id="DeP-YI-ppS"/>
+                            <constraint firstItem="JUT-u9-xNE" firstAttribute="top" secondItem="QaN-Dd-D4q" secondAttribute="bottom" id="f3j-2v-5yw"/>
+                            <constraint firstItem="JUT-u9-xNE" firstAttribute="top" secondItem="QaN-Dd-D4q" secondAttribute="bottom" id="iQY-1q-hVY"/>
+                            <constraint firstItem="QaN-Dd-D4q" firstAttribute="top" secondItem="gfw-Fe-YMe" secondAttribute="top" id="oak-9l-hG2"/>
+                            <constraint firstItem="QaN-Dd-D4q" firstAttribute="leading" secondItem="gfw-Fe-YMe" secondAttribute="leading" id="yXh-YH-b6R"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gfw-Fe-YMe"/>
                     </view>
                     <connections>
