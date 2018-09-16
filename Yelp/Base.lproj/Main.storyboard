@@ -209,41 +209,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pyt-nu-hU0">
-                                <rect key="frame" x="0.0" y="64" width="375" height="190.5"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="222.5"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kin Khao" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQU-E8-5ue">
-                                <rect key="frame" x="16" y="262.5" width="78" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kin Khao" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQU-E8-5ue">
+                                <rect key="frame" x="16" y="294.5" width="78" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="upo-H3-4mB">
-                                <rect key="frame" x="16" y="290.5" width="83" height="15"/>
+                                <rect key="frame" x="16" y="322.5" width="83" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="WLJ-82-jpj"/>
                                     <constraint firstAttribute="width" constant="83" id="dFk-9B-2dC"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1AV-qu-3sn">
-                                <rect key="frame" x="16" y="309.5" width="17" height="16"/>
+                                <rect key="frame" x="16" y="341.5" width="17" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBe-X9-A9I">
-                                <rect key="frame" x="37" y="309.5" width="26.5" height="16"/>
+                                <rect key="frame" x="37" y="341.5" width="26.5" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call: (415) 362-7456" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8W-Cc-H9q">
-                                <rect key="frame" x="16" y="329.5" width="127" height="16"/>
+                                <rect key="frame" x="16" y="361.5" width="127" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,591 Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90y-Q1-7Rp">
-                                <rect key="frame" x="103" y="290.5" width="84.5" height="16"/>
+                                <rect key="frame" x="103" y="322.5" width="84.5" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -254,7 +254,7 @@
                             <constraint firstItem="E8W-Cc-H9q" firstAttribute="leading" secondItem="lQU-E8-5ue" secondAttribute="leading" id="Emj-hT-fvI"/>
                             <constraint firstItem="lQU-E8-5ue" firstAttribute="leading" secondItem="1PT-sV-rwL" secondAttribute="leading" constant="16" id="ISw-UT-hdn"/>
                             <constraint firstItem="XBe-X9-A9I" firstAttribute="centerY" secondItem="1AV-qu-3sn" secondAttribute="centerY" id="N8n-B1-Ba7"/>
-                            <constraint firstItem="pyt-nu-hU0" firstAttribute="height" secondItem="4id-yh-afB" secondAttribute="height" multiplier="1:3.5" id="WwK-Py-YoA"/>
+                            <constraint firstItem="pyt-nu-hU0" firstAttribute="height" secondItem="4id-yh-afB" secondAttribute="height" multiplier="1:3" id="WwK-Py-YoA"/>
                             <constraint firstItem="90y-Q1-7Rp" firstAttribute="centerY" secondItem="upo-H3-4mB" secondAttribute="centerY" id="bhR-Fd-XcD"/>
                             <constraint firstItem="E8W-Cc-H9q" firstAttribute="top" secondItem="1AV-qu-3sn" secondAttribute="bottom" constant="4" id="c23-DQ-w1O"/>
                             <constraint firstItem="1AV-qu-3sn" firstAttribute="top" secondItem="upo-H3-4mB" secondAttribute="bottom" constant="4" id="cL0-5R-lEz"/>
@@ -271,9 +271,13 @@
                         <viewLayoutGuide key="safeArea" id="1PT-sV-rwL"/>
                     </view>
                     <connections>
+                        <outlet property="categoriesLabel" destination="XBe-X9-A9I" id="lR8-eW-rmV"/>
                         <outlet property="mainImageView" destination="pyt-nu-hU0" id="gQ4-V3-OU3"/>
                         <outlet property="nameLabel" destination="lQU-E8-5ue" id="EIN-Zt-rWZ"/>
+                        <outlet property="phoneLabel" destination="E8W-Cc-H9q" id="M0R-gB-4e1"/>
+                        <outlet property="priceLabel" destination="1AV-qu-3sn" id="3zo-5d-YDe"/>
                         <outlet property="ratingImageView" destination="upo-H3-4mB" id="k36-7x-jmq"/>
+                        <outlet property="reviewsLabel" destination="90y-Q1-7Rp" id="s2X-xI-gBk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdZ-9a-wkI" userLabel="First Responder" sceneMemberID="firstResponder"/>

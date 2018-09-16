@@ -13,6 +13,7 @@
 		5707BCF3214735B50005D3BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5707BCF1214735B50005D3BC /* LaunchScreen.storyboard */; };
 		570FE53C21498DF1009B2ACC /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570FE53B21498DF1009B2ACC /* InfiniteScrollActivityView.swift */; };
 		57152592214DFC5100FCE195 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57152591214DFC5100FCE195 /* MapViewController.swift */; };
+		57152594214E19C700FCE195 /* BusinessDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57152593214E19C700FCE195 /* BusinessDetailViewController.swift */; };
 		5730025921479D25001F8E22 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5730025821479D25001F8E22 /* BusinessCell.swift */; };
 		57FC0F24214736BE005DA84C /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC0F23214736BE005DA84C /* BusinessesViewController.swift */; };
 		57FC0F26214739EF005DA84C /* APIKeysSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC0F25214739EF005DA84C /* APIKeysSample.swift */; };
@@ -31,6 +32,7 @@
 		5707BCF4214735B50005D3BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		570FE53B21498DF1009B2ACC /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		57152591214DFC5100FCE195 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		57152593214E19C700FCE195 /* BusinessDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailViewController.swift; sourceTree = "<group>"; };
 		5730025821479D25001F8E22 /* BusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		57FC0F23214736BE005DA84C /* BusinessesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessesViewController.swift; sourceTree = "<group>"; };
 		57FC0F25214739EF005DA84C /* APIKeysSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeysSample.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				57FC0F23214736BE005DA84C /* BusinessesViewController.swift */,
 				57152591214DFC5100FCE195 /* MapViewController.swift */,
+				57152593214E19C700FCE195 /* BusinessDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57152594214E19C700FCE195 /* BusinessDetailViewController.swift in Sources */,
 				57FC0F26214739EF005DA84C /* APIKeysSample.swift in Sources */,
 				570FE53C21498DF1009B2ACC /* InfiniteScrollActivityView.swift in Sources */,
 				57FC0F24214736BE005DA84C /* BusinessesViewController.swift in Sources */,

@@ -223,6 +223,14 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             mapViewController.mapAnnotations = mapAnnotations
             mapViewController.userLatitude = latitude
             mapViewController.userLongitude = longitude
+        } else {
+            // Business Detail View Controller
+            let cell = sender as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: cell) {
+                let business = businesses[indexPath.row]
+                let businessDetailViewController = segue.destination as! BusinessDetailViewController
+                businessDetailViewController.business = business
+            }
         }
     }
 
