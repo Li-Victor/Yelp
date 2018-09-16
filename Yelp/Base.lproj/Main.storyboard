@@ -185,7 +185,6 @@
                             <constraint firstItem="JUT-u9-xNE" firstAttribute="leading" secondItem="gfw-Fe-YMe" secondAttribute="leading" id="Ax6-Rn-edq"/>
                             <constraint firstItem="QaN-Dd-D4q" firstAttribute="trailing" secondItem="gfw-Fe-YMe" secondAttribute="trailing" id="DeP-YI-ppS"/>
                             <constraint firstItem="JUT-u9-xNE" firstAttribute="top" secondItem="QaN-Dd-D4q" secondAttribute="bottom" id="f3j-2v-5yw"/>
-                            <constraint firstItem="JUT-u9-xNE" firstAttribute="top" secondItem="QaN-Dd-D4q" secondAttribute="bottom" id="iQY-1q-hVY"/>
                             <constraint firstItem="QaN-Dd-D4q" firstAttribute="top" secondItem="gfw-Fe-YMe" secondAttribute="top" id="oak-9l-hG2"/>
                             <constraint firstItem="QaN-Dd-D4q" firstAttribute="leading" secondItem="gfw-Fe-YMe" secondAttribute="leading" id="yXh-YH-b6R"/>
                         </constraints>
