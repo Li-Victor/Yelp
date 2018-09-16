@@ -21,6 +21,10 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QZj-sy-JPW">
                                 <rect key="frame" x="0.0" y="64" width="375" height="167"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="vkM-XA-oRL" appends="YES" id="Lmk-d1-6kR"/>
+                                </connections>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BFe-BW-evc">
                                 <rect key="frame" x="0.0" y="231" width="375" height="436"/>
@@ -142,11 +146,49 @@
                         <outlet property="navItem" destination="Bu7-wn-u2n" id="wk4-rH-C3f"/>
                         <outlet property="navigationItem" destination="Bu7-wn-u2n" id="qqk-IM-XxS"/>
                         <outlet property="tableView" destination="BFe-BW-evc" id="YyY-ZE-grE"/>
+                        <segue destination="pZ8-Ur-VyS" kind="presentation" identifier="showMapSegue" modalTransitionStyle="crossDissolve" id="P6R-hL-zYh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="vkM-XA-oRL">
+                    <connections>
+                        <action selector="didMapTap:" destination="BYZ-38-t0r" id="rUg-54-mu3"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1055.2" y="118.29085457271366"/>
+            <point key="canvasLocation" x="849" y="118"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="YjO-GR-rkC">
+            <objects>
+                <viewController id="pZ8-Ur-VyS" customClass="MapViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R43-Ih-6CE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QaN-Dd-D4q">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="bJL-wG-bcL"/>
+                                </items>
+                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUT-u9-xNE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="gfw-Fe-YMe"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="JUT-u9-xNE" id="vX3-yO-GGb"/>
+                        <outlet property="navItem" destination="bJL-wG-bcL" id="UDl-78-eKS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mkx-QD-WBv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1693.5999999999999" y="-69.715142428785612"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WaR-Dh-ADu">

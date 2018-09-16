@@ -12,6 +12,7 @@
 		5707BCF0214735B50005D3BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5707BCEF214735B50005D3BC /* Assets.xcassets */; };
 		5707BCF3214735B50005D3BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5707BCF1214735B50005D3BC /* LaunchScreen.storyboard */; };
 		570FE53C21498DF1009B2ACC /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570FE53B21498DF1009B2ACC /* InfiniteScrollActivityView.swift */; };
+		57152592214DFC5100FCE195 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57152591214DFC5100FCE195 /* MapViewController.swift */; };
 		5730025921479D25001F8E22 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5730025821479D25001F8E22 /* BusinessCell.swift */; };
 		57FC0F24214736BE005DA84C /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC0F23214736BE005DA84C /* BusinessesViewController.swift */; };
 		57FC0F26214739EF005DA84C /* APIKeysSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC0F25214739EF005DA84C /* APIKeysSample.swift */; };
@@ -29,6 +30,7 @@
 		5707BCF2214735B50005D3BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5707BCF4214735B50005D3BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		570FE53B21498DF1009B2ACC /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
+		57152591214DFC5100FCE195 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5730025821479D25001F8E22 /* BusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		57FC0F23214736BE005DA84C /* BusinessesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessesViewController.swift; sourceTree = "<group>"; };
 		57FC0F25214739EF005DA84C /* APIKeysSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeysSample.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				57FC0F23214736BE005DA84C /* BusinessesViewController.swift */,
+				57152591214DFC5100FCE195 /* MapViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				57FC0F2B21473F33005DA84C /* Business.swift in Sources */,
 				5707BCE9214735B40005D3BC /* AppDelegate.swift in Sources */,
 				5730025921479D25001F8E22 /* BusinessCell.swift in Sources */,
+				57152592214DFC5100FCE195 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

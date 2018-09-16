@@ -31,9 +31,13 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     let locationManager = CLLocationManager()
     var latitude: CLLocationDegrees!
     var longitude: CLLocationDegrees!
+    var mapAnnotations: [MKAnnotation] = []
     var first = true
     
-
+    @IBAction func didMapTap(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "showMapSegue", sender: nil)
+    }
+    
     func updateMap() {
         
         // recenters to user location
@@ -42,13 +46,15 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         mapView.setRegion(region, animated: false)
         
         // map annotations
-        mapView.removeAnnotations(mapView.annotations)
-        for business in businesses {
+        mapView.removeAnnotations(mapAnnotations)
+        
+        mapAnnotations = businesses.map {
             let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: business.latitude, longitude: business.longitude)
-            annotation.title = business.name
-            mapView.addAnnotation(annotation)
+            annotation.coordinate = CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
+            annotation.title = $0.name
+            return annotation
         }
+        mapView.addAnnotations(mapAnnotations)
     }
     
     func fetchBusinesses(for term: String = "", offset: Int = 0) {
@@ -208,6 +214,15 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             self.businesses = []
             searchBar.resignFirstResponder()
             fetchBusinesses(for: text)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMapSegue" {
+            let mapViewController = segue.destination as! MapViewController
+            mapViewController.mapAnnotations = mapAnnotations
+            mapViewController.userLatitude = latitude
+            mapViewController.userLongitude = longitude
         }
     }
 
