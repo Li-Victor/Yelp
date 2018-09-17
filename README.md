@@ -2,7 +2,7 @@
 
 A Yelp search app using the [Yelp API](https://www.yelp.com/developers/documentation/v3/business_search).
 
-Time spent: 7 hours spent in total
+Time spent: 18 hours spent in total
 
 ## User Stories
 
@@ -15,30 +15,32 @@ The following **required** functionality is completed:
 The following **stretch** features are implemented:
 
 - [x] Infinite scroll for restaurant results. (+3pt)
-- [ ] Implement map view of restaurant results. (+3pt)
-- [ ] Implement the restaurant detail page. (+2pt)
+- [x] Implement map view of restaurant results. (+3pt)
+- [x] Implement the restaurant detail page. (+2pt)
 
 The following **additional** features are implemented:
 
 - [x] Using the search bar to search for businesses
 - [x] Using the phone location coordinates to find businesses nearby
+- [x] Reviews of businesses
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Autolayout
+2. MapKit
+3. CoreLocation
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![](https://github.com/Li-Victor/Yelp/blob/master/1.gif)
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [Giphy Capture](https://giphy.com/apps/giphycapture).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Getting user location was a challenge, as I did take a good look at the documentation of MapKit.
 
 ## License
 
