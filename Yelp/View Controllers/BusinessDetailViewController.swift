@@ -10,8 +10,10 @@ import UIKit
 import AlamofireImage
 import SwiftyJSON
 
-class BusinessDetailViewController: UIViewController {
+class BusinessDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ratingImageView: UIImageView!
@@ -21,10 +23,20 @@ class BusinessDetailViewController: UIViewController {
     @IBOutlet weak var phoneLabel: UILabel!
     
     var business: Business!
-    var businessReviews: [BusinessReview] = []
+    var businessReviews: [BusinessReview] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 175
 
         nameLabel.text = business.name
         mainImageView.af_setImage(withURL: business.imageURL)
@@ -55,6 +67,17 @@ class BusinessDetailViewController: UIViewController {
             
         }
         task.resume()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return businessReviews.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessReviewCell") as! BusinessReviewCell
+        
+        cell.businessReview = businessReviews[indexPath.row]
+        return cell
     }
 
     override func didReceiveMemoryWarning() {

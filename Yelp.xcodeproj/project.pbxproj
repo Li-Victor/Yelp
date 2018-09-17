@@ -16,6 +16,7 @@
 		57152594214E19C700FCE195 /* BusinessDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57152593214E19C700FCE195 /* BusinessDetailViewController.swift */; };
 		571CE1B8214EC63F00656B88 /* BusinessReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571CE1B7214EC63F00656B88 /* BusinessReview.swift */; };
 		5730025921479D25001F8E22 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5730025821479D25001F8E22 /* BusinessCell.swift */; };
+		5759C4A1214F374100254940 /* BusinessReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4A0214F374100254940 /* BusinessReviewCell.swift */; };
 		57FC0F24214736BE005DA84C /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC0F23214736BE005DA84C /* BusinessesViewController.swift */; };
 		57FC0F26214739EF005DA84C /* APIKeysSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC0F25214739EF005DA84C /* APIKeysSample.swift */; };
 		57FC0F2821473A08005DA84C /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC0F2721473A08005DA84C /* APIKeys.swift */; };
@@ -36,6 +37,7 @@
 		57152593214E19C700FCE195 /* BusinessDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailViewController.swift; sourceTree = "<group>"; };
 		571CE1B7214EC63F00656B88 /* BusinessReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessReview.swift; sourceTree = "<group>"; };
 		5730025821479D25001F8E22 /* BusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
+		5759C4A0214F374100254940 /* BusinessReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessReviewCell.swift; sourceTree = "<group>"; };
 		57FC0F23214736BE005DA84C /* BusinessesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessesViewController.swift; sourceTree = "<group>"; };
 		57FC0F25214739EF005DA84C /* APIKeysSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeysSample.swift; sourceTree = "<group>"; };
 		57FC0F2721473A08005DA84C /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				5730025821479D25001F8E22 /* BusinessCell.swift */,
 				570FE53B21498DF1009B2ACC /* InfiniteScrollActivityView.swift */,
+				5759C4A0214F374100254940 /* BusinessReviewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				57FC0F26214739EF005DA84C /* APIKeysSample.swift in Sources */,
 				570FE53C21498DF1009B2ACC /* InfiniteScrollActivityView.swift in Sources */,
 				57FC0F24214736BE005DA84C /* BusinessesViewController.swift in Sources */,
+				5759C4A1214F374100254940 /* BusinessReviewCell.swift in Sources */,
 				57FC0F2821473A08005DA84C /* APIKeys.swift in Sources */,
 				57FC0F2B21473F33005DA84C /* Business.swift in Sources */,
 				5707BCE9214735B40005D3BC /* AppDelegate.swift in Sources */,
